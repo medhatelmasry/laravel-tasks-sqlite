@@ -37,14 +37,17 @@ jobs:
       #   run: |
       #     cp .env.ci .env
       #     php artisan key:generate
-      - name: give permission to storage folder
+      - name: give full permission to storage folder
         run: chmod -R 777 storage
 
       - name: migrate database
         run: php artisan migrate --force
       
-      - name: give permission to ./database/database.sqlite
-        run: chmod -R 777 ./database/database.sqlite
+      # - name: give permission to ./database/database.sqlite
+      #   run: chmod -R 777 ./database/database.sqlite
+
+      - name: give full permission to database folder
+        run: chmod -R 777 database
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
