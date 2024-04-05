@@ -37,10 +37,10 @@ jobs:
         run: chmod -R 777 storage
 
       - name: migrate database (NEW)
-        run: php artisan migrate --force
+        run: php artisan migrate --force --seed
 
-      - name: give full permission to database folder (NEW)
-        run: chmod -R 777 database
+      - name: give full permission to database/data folder (NEW)
+        run: chmod -R 777 database/data
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
