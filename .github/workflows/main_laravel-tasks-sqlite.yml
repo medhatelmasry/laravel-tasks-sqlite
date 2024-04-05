@@ -33,20 +33,13 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
-      # - name: Prepare Laravel Application
-      #   run: |
-      #     cp .env.ci .env
-      #     php artisan key:generate
-      - name: give full permission to storage folder
+      - name: give full permission to storage folder (NEW)
         run: chmod -R 777 storage
 
-      - name: migrate database
+      - name: migrate database (NEW)
         run: php artisan migrate --force
-      
-      # - name: give permission to ./database/database.sqlite
-      #   run: chmod -R 777 ./database/database.sqlite
 
-      - name: give full permission to database folder
+      - name: give full permission to database folder (NEW)
         run: chmod -R 777 database
 
       - name: Zip artifact for deployment
